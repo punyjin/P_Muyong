@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <button class="btn btn-primary mt-2" id="search-btn">ค้นหา</button>
+    
+
+    <script>
+        let products = [
+            'Apple', 'Banana', 'Mango', 'Orange', 'Grapes', 
+            'Pineapple', 'Strawberry', 'Watermelon', 'Peach',
+            'Blueberry', 'Lemon', 'Tomato', 'Avocado', 
+            'Cherry'];
+        console.log('รายการสินค้าทั้งหมด:', products);
+
+        products.push('Plum');
+        console.log('หลังเพิ่มสินค้า Plum:', products);
+
+        products.shift();
+        console.log('ลบชิ้นแรก: ',products)
+        products.pop();
+        console.log('ลบชิ้นสุดท้าย:', products);
+
+        document.getElementById('search-btn').addEventListener('click', () => {
+            let searchProduct = prompt('กรุณากรอกชื่อสินค้าที่ต้องการค้นหา:');
+            
+            if (searchProduct === null) {
+                alert('คุณยกเลิกการค้นหา');
+                return;
+            }
+
+            if (searchProduct.trim() === '') {
+                alert('กรุณากรอกชื่อสินค้าด้วย');
+                return;
+            }
+
+            let matchedProducts = products.filter(product =>
+                product.toLowerCase().includes(searchProduct.toLowerCase())
+            );
+
+            if (matchedProducts.length > 0) {
+                matchedProducts.forEach((product, index) => 
+                    console.log(`พบสินค้าใกล้เคียง: ${product} ที่ตำแหน่ง index: ${products.indexOf(product)}`)
+                );
+            } else {
+                console.log(`${searchProduct} ไม่พบในรายการสินค้า`);
+            }
+        });
+
+        products.sort();
+        console.log('รายการสินค้าหลังเรียงลำดับ A-Z:', products);
+
+        let prices = [
+            50, 30, 60, 40, 20,  
+            80, 100, 120, 70,    
+            90, 110, 200, 60,    
+            30, 40               
+        ];
+
+        let totalPrice = prices.reduce((total, price) => total + price, 0);
+        console.log('ผลรวมของราคาสินค้า:', totalPrice);
+    </script>
+</body>
+</html>
